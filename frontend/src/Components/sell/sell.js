@@ -33,25 +33,30 @@ export default function Sell() {
       <div id="sell-outer">
         <h2 id="sell-heading">POST YOUR PRODUCT</h2>
         <div id="sell-inner">
-        <div className="sell-input">
-              <ImageUpload/>
-            </div>
-          <form onSubmit={addProduct}>
+        
+          <form onSubmit={addProduct} className="form-cont">
             
             <div className="sell-input" >
+              <label className="sell-label">Product Name</label>
               <input required type='' placeholder='Enter your product name' onChange={(event) => setProductName(event.target.value)}></input>
             </div>
             <div className="sell-input" >
+            <label className="sell-label">Quantity</label>
               <input required type='number' placeholder='Enter Your Product Quantity' onChange={(event) => setQuantity(event.target.value)}></input>
             </div>
             <div className="sell-input" >
+            <label className="sell-label">Price</label>
               <input required type='number' placeholder='Enter Your Product Price' onChange={(event) => setPrice(event.target.value)}></input>
             </div>
             <div className="sell-input">
+            <label className="sell-label">Description</label>
               <input type='' required placeholder='Write pick up details ' onChange={(event) => setExtra(event.target.value)}></input>
             </div>
             <button id="sell-post-button" >POST</button>
           </form>
+          <div className="sell-input">
+              <ImageUpload/>
+            </div>
         </div>
       </div>
     </div>

@@ -41,36 +41,44 @@ export default function ChatingRoom() {
         ChatId: localStorage.getItem('ChatId'),
         msg: chat,
       });
-      alert(response.data.msg);
+      // alert(response.data.msg);
       setChat("");  // Clear the input after sending the message
     } catch (error) {
       console.error('Error sending chat:', error);
     }
   };
+  console.log(array);
 
   return (
     <div className='ChatingRoom-outer'>
-      <h2 className='ChatingRoom-header'>Group Number : {samp}</h2>
+      <h2 className='ChatingRoom-header'>Chat Room</h2>
+      <div className="ChatingRoom-cont">
       {array.length > 0 ? (
         array.map((chat, index) => (
           <div key={index}>
             <div className='ChatingRoom-line'>
-              <div className='ChatingRoom-name'>{chat.sender} </div>
+              <div id="Chat-info">
+              <div className='ChatingRoom-name'>{chat.sender} :</div>
               <div>{chat.message}</div>
+              </div>
+              <div id="chat-time-cont">{chat.timestamp}</div>
             </div>
           </div>
         ))
       ) : (
-        <p>No chats available</p>
+        <p id="start-chat">Start your chat here</p>
       )}
+      </div>
       <div className='ChatingRoom-input-outer'>
         <form onSubmit={addChat}>
           <input 
             type='text' 
+            id="chat-input"
             value={chat}  // Bind input value to chat state
             onChange={(event) => setChat(event.target.value)} 
+            required
           />
-          <button type='submit'>Add</button> {/* Corrected typo */}
+          <button type='submit' id="chat-submit">Send</button> {/* Corrected typo */}
         </form>
       </div>
     </div>

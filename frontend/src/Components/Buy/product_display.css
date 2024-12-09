@@ -8,11 +8,20 @@
     background-color: #ffffff;
     color: #333333;
   }
+  .product_display-img-div{
+    margin: 2vh 1vw;
+    width: 15vw;
+  }
+  
   .product_display-img{
-    /* width: 100%;
-    height: 20vh; */
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 20vh;
+    /* width: auto;
+    height: auto; */
+  }
+  .product_dispaly-all-div{
+    margin-left: 5vw;
+    width: 20vw;
   }
   .product_dispaly-no-products {
     text-align: center;
@@ -46,9 +55,27 @@
     color: #333333; /* Dark grey for text */
     margin: 5px 0;
   }
+  .product_display-count{
+    margin: 10vh 0 0 10vw;
+    border : 2px solid red;
+    height: 5vh;
+    width: 10vw;
+    border-radius: 5px;
+  }
+  .product_display-count-button{
+    height: inherit;
+    width: 3vw;
+    background-color: red;
+    color: white;
+  }
+  .product_display-count-val{
+    width: 4vw;
+  }
   .product_display-buy{
     color: white;
     background-color: #ff0000;
+    margin: 10vh 0 0 5vw ;
+    height: 5vh;
     padding: 0.25rem 1rem 0.25rem 1rem;
     border: 2px solid #ff0000;
     border-radius: 0.25rem;

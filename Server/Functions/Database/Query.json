@@ -12,7 +12,7 @@
   {
     "Question": "Can I buy furniture at Hostellers' Emporium?",
     "Answer": "Yes, hostelers can buy furniture and other essential items for their rooms or hostels.",
-    "AskedFreq": 13
+    "AskedFreq": 14
   },
   {
     "Question": "Are services also available in Hostellers' Emporium?",
@@ -22,7 +22,7 @@
   {
     "Question": "Can I sell used items at Hostellers' Emporium?",
     "Answer": "Yes, you can sell used items like books, clothes, or electronics on Hostellers' Emporium.",
-    "AskedFreq": 11
+    "AskedFreq": 12
   },
   {
     "Question": "Is Hostellers' Emporium only for hostelers?",

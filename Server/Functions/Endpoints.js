@@ -78,7 +78,7 @@ const SignUp = async function(req,res){
         Products: []
         });
         await newProduct.save();
-        const token = jwt.sign({ UserId: newUser._id },{Name : newUser.Name}, secret_key);
+        const token = jwt.sign({ UserId: newUser._id, Name: newUser.Name }, secret_key);
         return res.status(202).json({
         msg: "Signup Successful",
         token
@@ -129,7 +129,7 @@ const Login = async function (req,res) {
             msg: "Incorrect Password"
           });
         }
-        const token = jwt.sign({ UserId: user._id }, {Name : newUser.Name},secret_key, { expiresIn: '1h' });
+        const token = jwt.sign({ UserId: user._id, Name: user.Name }, secret_key);
         return res.status(202).json({
           msg: "Login Successful",
           token
@@ -433,15 +433,17 @@ const UpdateProduct = async function(req, res) {
                 msg: "Product not found"
             });
         }
-
-        productRecord.Products[productIndex] = {
-            ...productRecord.Products[productIndex],
-            Quantity: req.body.Quantity,
-            Price: req.body.Price,
-            NightCharge: req.body.NightCharge,
-            Extra: req.body.Extra
-        };
-
+        productRecord.Products[productIndex].Quantity= req.body.Quantity;
+        productRecord.Products[productIndex].Price= req.body.Price;
+        productRecord.Products[productIndex].Extra= req.body.Extra;
+        // productRecord.Products[productIndex] = {
+        //     ...productRecord.Products[productIndex],
+        //     Quantity: req.body.Quantity,
+        //     Price: req.body.Price,
+        //     NightCharge: req.body.NightCharge,
+        //     Extra: req.body.Extra
+        // };
+        console.log(productRecord);
         await productRecord.save();
 
         return res.status(200).json({
@@ -654,13 +656,13 @@ const ProductBuying = async function(req, res) {
 
         // Find the product by uniqueId
         const product = productRecord.Products.find(p => p.uniqueId === req.body.uniqueId);
-        if (!product || product.Quantity <= 0) {
+        if (!product || product.Quantity-req.body.quantity <= 0) {
             console.log(productRecord)
             return res.status(400).json({ msg: "Product is out of stock" });
         }
 
         // Decrease the quantity of the product
-        product.Quantity -= 1;
+        product.Quantity -= req.body.quantity;
 
         // Generate a unique ChatId for the new chat group
         const chatGroup = new ChatGroup({
@@ -673,7 +675,7 @@ const ProductBuying = async function(req, res) {
         // Add the product to the buyer's InProgressBuying list
         user.InProgressBuying.push({
             ProductName: product.ProductName,
-            Units: 1,
+            Units: req.body.quantity,
             Seller: productRecord.UserId,
             time: timeInIST,
             ChatId: chatGroup._id
@@ -697,7 +699,7 @@ const ProductBuying = async function(req, res) {
 
         // Add the transaction to the product's InProgress list
         product.InProgress.push({
-            Units: 1,
+            Units: req.body.quantity,
             buyer: user.Name,
             time: timeInIST,
             ChatId: chatGroup._id
@@ -822,7 +824,7 @@ const Approving = async function(req, res) {
         // Move the transaction from InProgressBuying to Bought for the buyer
         const buyerTransactionIndex = buyer.InProgressBuying.findIndex(p => new Date(p.time).getTime() === new Date(req.params.time).getTime());
         if (buyerTransactionIndex !== -1) {
-            console.log(buyer.InProgressBuying[buyerTransactionIndex])
+            // console.log(buyer.InProgressBuying[buyerTransactionIndex])
             buyer.Bought.push(buyer.InProgressBuying[buyerTransactionIndex]);
             buyer.InProgressBuying.splice(buyerTransactionIndex, 1);
             await buyer.save();
@@ -832,7 +834,7 @@ const Approving = async function(req, res) {
         }
 
         // Find the corresponding chat room and remove it
-        const chat = await ChatGroup.findOne({ ChatId: req.params.chatid });
+        const chat = await ChatGroup.findOne({ _id: req.params.chatid });
         if (chat) {
             await chat.remove();
         }

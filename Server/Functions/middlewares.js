@@ -39,4 +39,31 @@ const storage = multer.diskStorage({
     }
 });
 
-module.exports = {verification,storage};
+const checkPassword = function(req,res,next){
+    const password = req.body.Password;
+    if (password.length < 8){
+        return res.status(201).json({
+            msg : "Enter a 8 length long password"}
+        )
+    }else if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+        return res.status(201).json({
+            msg :"Password must contain lower case, upper case, and numerical values."
+        }
+        )
+    }else{
+        next();
+    }
+}
+
+const checkEmail = function (req, res, next) {
+    const email = req.body.Email;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (email && emailRegex.test(email)) {
+        next();
+    } else {
+        res.status(400).json({ error: 'Invalid email format' });
+    }
+};
+
+
+module.exports = {verification,storage,checkPassword,checkEmail};

@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './product_display.css'; // Import the CSS file
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 function ProductDisplay({ products }) {
+  const [isUpdate, setUpdate] = useState({
+    name: "",
+    quantity: 0,
+    extra: "",
+    price: 0
+  });
   const Navigate = useNavigate();
   if (!products || products.length === 0) {
     return <div className="product_dispaly-no-products">No products available</div>;
+  }
+  const UpdateProductFunction = async function(){
+    const token = localStorage.getItem('authToken');
+    try{
+      const response = await axios.post('http://localhost:5000/UpdateProduct',{
+        Authorization: token,
+        ProductName : isUpdate.name,
+        Quantity: isUpdate.quantity,
+        Price: isUpdate.price,
+        Extra: isUpdate.extra
+      })
+      alert(response.data.msg)
+      window.location.reload();
+    }catch(e){
+      alert(e);
+    }
   }
   const DeleteProductFunction= async function(name){
     const token = localStorage.getItem('authToken');
@@ -33,9 +55,29 @@ function ProductDisplay({ products }) {
     localStorage.setItem("ChatId",ChatId);
     Navigate('/ChatingRoom');
   }
+  const handleUpdateChange = (e) => {
+    let target = e.target;
+    setUpdate({...isUpdate, [e.target.name]: e.target.value});
+  }
 
   return (
     <div className="product_display2" >
+      {isUpdate.name !== "" && (<div className="update-outer-cont">
+      <div className="update-inner-cont">
+        <h2>Product Name : {isUpdate.name}</h2>
+        <form onSubmit={UpdateProductFunction}>
+          <label htmlFor='quantity'>Quantity : </label>
+          <input id='quantity' type="number" name="quantity" value={isUpdate.quantity} placeholder='quantity' onChange={handleUpdateChange}/><br />
+          <label>Price : </label>
+          <input type="number" name="price" value={isUpdate.price} placeholder='p' onChange={handleUpdateChange}/><br />
+          <label>Description : </label>
+          <input type="text" name="extra" value={isUpdate.extra} placeholder='e' onChange={handleUpdateChange}/><br/>
+          <div className='product-display-btn-flex'>
+          <button type="submit">Update</button><br/>
+          <button type="button" onClick={() => {setUpdate({name: ""})}}>Cancel</button></div>
+        </form>
+      </div>
+      </div>)}
   {products.map(product => (
     <div key={product.id} className="product-item2 productchange">
       <div className="card">
@@ -76,7 +118,8 @@ function ProductDisplay({ products }) {
           </p>
           <br></br>
         </div>
-        <div className="card-back">
+        <div className="product-display-btn-flex">
+          <button className='Delete-product' onClick={() => setUpdate({name: product.ProductName, quantity: product.Quantity, price: product.Price, extra: product.Extra})}>Update</button>
           <button className='Delete-product' onClick={() => DeleteProductFunction(product.ProductName)}>Delete</button>
         </div>
       </div>

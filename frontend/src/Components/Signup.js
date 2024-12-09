@@ -8,8 +8,23 @@ export default function Signup() {
   let [Name, setName] = useState();
   let [Email, setEmail] = useState();
   let [Password, setPassword] = useState();
+  let [message,setMessage] = useState("");
   let [Contact, setContact] = useState();
   const navigate = useNavigate();
+  const passwordChanged = function(password) {
+    if (password.length < 8) {
+        document.getElementsByClassName("Sign-up-warning")[0].style.color = "red";
+        setMessage("Password needs to be at least 8 characters long.");
+        return;
+    }
+    if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+        document.getElementsByClassName("Sign-up-warning")[0].style.color = "red";
+        setMessage("Password must contain lower case, upper case, and numerical values.");
+        return;
+    }
+    document.getElementsByClassName("Sign-up-warning")[0].style.color = "green";
+    setMessage("Valid password.");
+};
   const Register = async function (event) {
     event.preventDefault();
     try {
@@ -52,7 +67,7 @@ export default function Signup() {
             </div>
             <div>
               <label className='Signup-Label'>
-                Email 
+                Email  
               </label>
               <input type='email' required className='Signup-Input'onChange={(event) => setEmail(event.target.value)}/>
             </div>
@@ -60,7 +75,8 @@ export default function Signup() {
               <label className='Signup-Label'>
                 Password
               </label>
-              <input type='password' required className='Signup-Input' onChange={(event) => setPassword(event.target.value)}/>
+              <input type='password' required className='Signup-Input' onChange={(event) => {const newPassword = event.target.value;setPassword(newPassword);passwordChanged(newPassword);}}/>
+              <div className='Sign-up-warning Signup-Label'>{message}</div>
             </div>
             <div>
               <label className='Signup-Label'>

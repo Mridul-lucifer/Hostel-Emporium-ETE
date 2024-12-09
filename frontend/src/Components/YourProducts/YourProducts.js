@@ -9,6 +9,7 @@ export default function YourProducts() {
     
   useEffect(() => {
     const fetchProducts = async () => {
+      
       try {
         const response = await axios.post("http://localhost:5000/YourProducts",{
           Authorization: token
@@ -19,7 +20,7 @@ export default function YourProducts() {
       }
     };
     fetchProducts();
-  }, []);
+  });
 
   return (
     <div>

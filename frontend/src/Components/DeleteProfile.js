@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Style/DeleteProfile.css";
 import Logo from "./Pics/Logo.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import CompanyName from "./ComanyName";
 import axios from "axios";
 

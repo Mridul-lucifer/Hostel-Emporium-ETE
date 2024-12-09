@@ -14,7 +14,7 @@ export default function Buy() {
         const response = await axios.post("http://localhost:5000/AllProducts",{
           Authorization: token
         });
-        console.log('API response:', response.data); // Log the data to ensure it's correct
+        // console.log('API response:', response.data); // Log the data to ensure it's correct
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -22,18 +22,41 @@ export default function Buy() {
     };
 
     fetchProducts();
-  }, []); // Empty dependency array means this effect runs once on mount
+  }); // Empty dependency array means this effect runs once on mount
 
+  const ProductSold = async function (id, quantity){
+    const token = localStorage.getItem('authToken');
+    console.log(id)
+    if(quantity===0){
+      alert("Quatity can't be 0")
+    }else{
+    try {
+      const response = await axios.post('http://localhost:5000/ProductBuying',{
+        Authorization: token,
+        uniqueId : id,
+        quantity:quantity
+      }) 
+      
+      alert(response.data.msg)
+      window.location.reload();
+    }catch(err){
+      alert(err)
+    }}
+  }
+  if (!products || products.length === 0) {
+    return <div className="product_dispaly-no-products">No products available</div>;
+  }
   return (
     <div>
       <div id="buy-outer">
         <h1 id="buy-heading">PRODUCTS LISTED</h1>
         <div className='buy-flexx'>
-          <div className='buy-selectors'>
-            box
-          </div>
+          
           <div id="buy-inner">
-            <ProductDisplay products={products} /> {/* Pass the products data */}
+          <div className="product_dispaly">
+            {products.map(product => <ProductDisplay product={product} ProductSold={ProductSold}/>)}
+            {/* <ProductDisplay products={products} /> Pass the products data */}
+          </div>
           </div>
         </div>
       </div>
