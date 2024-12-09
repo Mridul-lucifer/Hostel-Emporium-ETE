@@ -29,12 +29,12 @@ const productSchema = new mongoose.Schema({
         SoldUnits: [{
             Units: Number,
             buyer: String,
-            time: Date
+            time: String
         }],
         InProgress: [{
             Units: Number,
             buyer: String,
-            time: Date,
+            time: String,
             ChatId: mongoose.Schema.Types.ObjectId
         }],
         DateTime: Date

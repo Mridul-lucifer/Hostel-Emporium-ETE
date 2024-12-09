@@ -3,6 +3,7 @@ import Logo from './Pics/Logo.jpg'
 import CompanyName from './ComanyName'
 import './Style/Header.css'
 import { useNavigate } from 'react-router-dom';
+import ChatBot from './ChatBot';
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const Navigate = useNavigate();
@@ -55,6 +56,9 @@ export default function Header() {
         )}
       </div>
         
+      </div>
+      <div className='ChatBot-Inheader'>
+        <ChatBot/>
       </div>
     </div>
   )

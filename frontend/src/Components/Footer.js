@@ -38,7 +38,7 @@ export default function Footer() {
             <ul><Link className='link' to="/ChangePassword"> Change Password </Link></ul>
             <ul><Link className='link' to="/DeleteProfile"> Delete Profile </Link></ul>
             <ul><Link className='link' to="/YourProducts"> YourProducts </Link></ul>
-            <ul><Link className='link' to='/Query'>Query</Link></ul>
+            {/* <ul><Link className='link' to='/Query'>Query</Link></ul> */}
             <ul><Link className='link' to='/YourBoughtProducts'>Your Bought Products</Link></ul>
           </div>
         </div>

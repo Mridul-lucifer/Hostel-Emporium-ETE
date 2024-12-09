@@ -22,7 +22,7 @@
   {
     "Question": "Can I sell used items at Hostellers' Emporium?",
     "Answer": "Yes, you can sell used items like books, clothes, or electronics on Hostellers' Emporium.",
-    "AskedFreq": 12
+    "AskedFreq": 13
   },
   {
     "Question": "Is Hostellers' Emporium only for hostelers?",
@@ -52,7 +52,7 @@
   {
     "Question": "Can I contact the seller directly on Hostellers' Emporium?",
     "Answer": "Yes, you can communicate with the seller via the platform to ask questions or negotiate prices.",
-    "AskedFreq": 20
+    "AskedFreq": 21
   },
   {
     "Question": "Is there a rating system for sellers on Hostellers' Emporium?",
@@ -67,7 +67,7 @@
   {
     "Question": "Can I exchange items on Hostellers' Emporium?",
     "Answer": "Yes, you can negotiate exchanges of items with other hostelers on the platform.",
-    "AskedFreq": 8
+    "AskedFreq": 10
   },
   {
     "Question": "Are there any discounts available on Hostellers' Emporium?",
@@ -112,7 +112,7 @@
   {
     "Question": "Can I sell food products on Hostellers' Emporium?",
     "Answer": "Typically, food products are not allowed due to health regulations, but some packaged or non-perishable items may be acceptable.",
-    "AskedFreq": 12
+    "AskedFreq": 13
   },
   {
     "Question": "Can I sell books on Hostellers' Emporium?",

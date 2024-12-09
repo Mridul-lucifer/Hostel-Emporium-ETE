@@ -443,7 +443,7 @@ const UpdateProduct = async function(req, res) {
         //     NightCharge: req.body.NightCharge,
         //     Extra: req.body.Extra
         // };
-        console.log(productRecord);
+        // console.log(productRecord);
         await productRecord.save();
 
         return res.status(200).json({
@@ -647,7 +647,7 @@ const ProductBuying = async function(req, res) {
         if (!user) {
             return res.status(404).json({ msg: "User not found" });
         }
-        console.log(req.body.uniqueId)
+        // console.log(req.body.uniqueId)
         // Fetch the product record for the seller
         const productRecord = await Product.findOne({ 'Products.uniqueId': req.body.uniqueId });
         if (!productRecord) {
@@ -670,24 +670,25 @@ const ProductBuying = async function(req, res) {
         });
         await chatGroup.save();
 
-        const timeInIST = new Date().toLocaleString("en-GB", { timeZone: "Asia/Kolkata", hour12: false });
+        const timeInIST = (new Date().toLocaleString("en-GB", { timeZone: "Asia/Kolkata", hour12: false })).toString();
+        console.log(timeInIST)
+        const seller = await User.findById({_id : productRecord.UserId});
+        if (!seller) {
+            return res.status(404).json({ msg: "Seller not found" });
+        }
 
         // Add the product to the buyer's InProgressBuying list
         user.InProgressBuying.push({
             ProductName: product.ProductName,
             Units: req.body.quantity,
-            Seller: productRecord.UserId,
+            Seller: seller.Name,
             time: timeInIST,
             ChatId: chatGroup._id
         });
         await user.save();
 
         // Add the transaction to the seller's InProgress list
-        const seller = await User.findById(productRecord.UserId);
-        if (!seller) {
-            return res.status(404).json({ msg: "Seller not found" });
-        }
-
+        
         // seller.Bought.push({
         //     ProductName: product.ProductName,
         //     Units: 1,
@@ -858,6 +859,9 @@ const GetQuery = function(req,res){
             })
         }
     }
+    return res.status(201).json({
+        answer : "Sorry You can Contact team for futher queries.."
+    })
 }
 
 const GetSamples = function(req,res){
@@ -959,14 +963,14 @@ const reviewSystem = async function(req, res) {
     try {
         const { Id, ProductName, Review, Rating } = req.body;
         const productRecord = await Product.findOne({ 
-            'Products.ProductName': ProductName, 
-            UserId: Id
+            'Products.ProductName': ProductName
+            // UserId: Id
         });
 
         if (!productRecord) {
             return res.status(200).json({
                 msg: "Not a valid product"
-            });
+            }); 
         }
 
         // Find the specific product by ProductName

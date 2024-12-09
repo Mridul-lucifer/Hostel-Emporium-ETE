@@ -29,7 +29,7 @@ export default function ImageUpload() {
             if (response.data.path) {
                 setPath( "http://localhost:5000"+ response.data.path)
                 localStorage.setItem('imagePath', response.data.path);
-                alert('Image uploaded successfully');
+                // alert('Image uploaded successfully');
             } else {
                 alert('Error uploading image');
             }

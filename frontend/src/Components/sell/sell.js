@@ -56,6 +56,13 @@ export default function Sell() {
           </form>
           <div className="sell-input">
               <ImageUpload/>
+              <ol className='term-condition'>
+                <h2>Terms and Conditions </h2>
+                <li>All payments and deliveries are to be handled directly between the buyer and seller.</li>
+                <li>It is recommended to meet in a safe location within the university campus for product handovers.</li>
+                <li>Users are expected to maintain respectful and polite communication with other members of the platform.</li>
+                <li>Hostellers Emporium is not responsible for any damages or losses arising from the use of the platform. Users engage in buying, selling, or trading at their own risk.</li>
+              </ol>
             </div>
         </div>
       </div>

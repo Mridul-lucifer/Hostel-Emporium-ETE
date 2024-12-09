@@ -21,14 +21,14 @@ const userSchema = new mongoose.Schema({
     InProgressBuying: [{
         ProductName: String,
         Units: Number,
-        Seller: mongoose.Schema.Types.ObjectId,
-        time: Date,
+        Seller: String,
+        time: String,
         ChatId: mongoose.Schema.Types.ObjectId
     }],
     Bought: [{
         ProductName: String,
         Units: Number,
-        Seller: mongoose.Schema.Types.ObjectId,
+        Seller: String,
         time: Date,
         ChatId: mongoose.Schema.Types.ObjectId
     }]
