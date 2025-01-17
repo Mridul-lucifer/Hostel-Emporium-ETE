@@ -3,13 +3,13 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv');
 const multer = require('multer') 
 const app = express();
-const port = 5000;
+const port = 5000;           
 const {verification,storage,checkPassword,checkEmail} = require('./Functions/middlewares.js')
 const {Login,SignUp,UpdateProfile,ChangePassword,AccountDelete,AddProduct,UpdateProduct,DeleteProduct,AllProducts,YourProducts,ProductBuying,Approving,GetQuery,GetSamples,YourBoughtProducts,reviewSystem,GetChat,addChat,FileUpload} = require('./Functions/Endpoints.js')
 const cors = require('cors')
 
 const upload = multer({ storage: storage })
-
+   
 dotenv.config()
 app.use(express.json())
 app.use(cors())
@@ -18,7 +18,7 @@ app.use('/Functions/Database/Uploads', express.static('Functions/Database/Upload
 const mongoURI = process.env.MongoDbURL
 mongoose.connect(mongoURI)
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB'); 
   })
   .catch((err) => { 
     console.log('Error connecting to MongoDB', err);
