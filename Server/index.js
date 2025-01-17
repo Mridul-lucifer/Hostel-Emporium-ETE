@@ -12,7 +12,7 @@ const upload = multer({ storage: storage })
    
 dotenv.config()
 app.use(express.json())
-// app.use(cors())
+app.use(cors())
 app.use('/Functions/Database/Uploads', express.static('Functions/Database/Uploads')); 
 
 const mongoURI = process.env.MongoDbURL
