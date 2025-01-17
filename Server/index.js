@@ -24,6 +24,9 @@ mongoose.connect(mongoURI)
     console.log('Error connecting to MongoDB', err);
   });
   
+app.get('/',()=>{
+  console.log("hello")
+})
 app.post('/SignUp' ,checkPassword,checkEmail, SignUp); // kirti
 app.post('/Login' , Login); // kirti
 app.post('/UpdateProfile' , verification , UpdateProfile); // kirti
