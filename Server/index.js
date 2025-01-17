@@ -11,9 +11,16 @@ const cors = require('cors')
 const upload = multer({ storage: storage })
    
 dotenv.config()
+app.use(
+  cors({
+    origin: 'https://hostel-emporium-ete.vercel.app', // Allow only your frontend
+    methods: ['GET', 'POST'], // Allowed HTTP methods
+    credentials: true, // Allow cookies if needed
+  })
+);
+
 app.use(express.json())
-// app.use(cors())
-app.use('/Functions/Database/Uploads', express.static('Functions/Database/Uploads')); 
+// app.use('/Functions/Database/Uploads', express.static('Functions/Database/Uploads')); 
 
 const mongoURI = process.env.MongoDbURL
 mongoose.connect(mongoURI)
