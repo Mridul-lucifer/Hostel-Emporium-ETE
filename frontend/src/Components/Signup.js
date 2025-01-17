@@ -33,7 +33,15 @@ export default function Signup() {
         Email: Email,
         Password: Password,
         Contact: Contact
-      });
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true, // Ensure it matches backend credentials setting
+      }
+    );
+    
       
       if (response.data.token) {
         localStorage.setItem('authToken', response.data.token);
