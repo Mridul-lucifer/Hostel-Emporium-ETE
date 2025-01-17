@@ -11,7 +11,7 @@ export default function LoginPage() {
   const CheckLogin = async function (event) {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/Login", {
+      const response = await axios.post("https://server-navy-chi.vercel.app/Login", {
         Email: Email,
         Password: Password,
       });
