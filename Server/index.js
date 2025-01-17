@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose')
 const dotenv = require('dotenv');
+const cors = require('cors')
 const multer = require('multer') 
 const app = express();
 const port = 5000;           
 const {verification,storage,checkPassword,checkEmail} = require('./Functions/middlewares.js')
 const {Login,SignUp,UpdateProfile,ChangePassword,AccountDelete,AddProduct,UpdateProduct,DeleteProduct,AllProducts,YourProducts,ProductBuying,Approving,GetQuery,GetSamples,YourBoughtProducts,reviewSystem,GetChat,addChat,FileUpload} = require('./Functions/Endpoints.js')
-const cors = require('cors')
+
 
 const upload = multer({ storage: storage })
    
