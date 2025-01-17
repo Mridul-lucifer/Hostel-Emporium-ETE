@@ -41,7 +41,7 @@ export default function Signup() {
       alert(response.data.msg);
       navigate('/Home');
     } catch (err) {
-      alert("Error: " + (err.response ? err.response.data.msg : "An unknown error occurred"));
+      console.log("error on onsibmit on signup "+err );
     }
   };
 
