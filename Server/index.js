@@ -6,7 +6,27 @@ const app = express();
 const port = 5000;           
 const {verification,storage,checkPassword,checkEmail} = require('./Functions/middlewares.js')
 const {Login,SignUp,UpdateProfile,ChangePassword,AccountDelete,AddProduct,UpdateProduct,DeleteProduct,AllProducts,YourProducts,ProductBuying,Approving,GetQuery,GetSamples,YourBoughtProducts,reviewSystem,GetChat,addChat,FileUpload} = require('./Functions/Endpoints.js')
-const cors = require('cors')
+const cors = require('cors');
+
+app.use((req, res, next) => {
+  console.log(`[CORS] Origin: ${req.headers.origin}`);
+  next();
+});
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (origin === 'https://hostel-emporium-ete.vercel.app') {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST'],
+    credentials: true,
+  })
+);
+
 
 const upload = multer({ storage: storage })
    
