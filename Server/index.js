@@ -6,43 +6,16 @@ const app = express();
 const port = 5000;           
 const {verification,storage,checkPassword,checkEmail} = require('./Functions/middlewares.js')
 const {Login,SignUp,UpdateProfile,ChangePassword,AccountDelete,AddProduct,UpdateProduct,DeleteProduct,AllProducts,YourProducts,ProductBuying,Approving,GetQuery,GetSamples,YourBoughtProducts,reviewSystem,GetChat,addChat,FileUpload} = require('./Functions/Endpoints.js')
-const cors = require('cors');
-
-app.use((req, res, next) => {
-  console.log(`[CORS] Origin: ${req.headers.origin}`);
-  next();
-});
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (origin === 'https://hostel-emporium-ete.vercel.app') {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ['GET', 'POST'],
-    credentials: true,
-  })
-);
-
+const cors = require('cors')
 
 const upload = multer({ storage: storage })
    
 dotenv.config()
-app.use(
-  cors({
-    origin: 'https://hostel-emporium-ete.vercel.app/', // Allow only your frontend
-    methods: ['GET', 'POST'], // Allowed HTTP methods
-    credentials: true, // Allow cookies if needed
-  })
-);
+app.use(cors())
 
 app.use(express.json())
 // app.use('/Functions/Database/Uploads', express.static('Functions/Database/Uploads')); 
 
-app.options('*', cors());
 const mongoURI = process.env.MongoDbURL
 mongoose.connect(mongoURI)
   .then(() => {
