@@ -28,7 +28,7 @@ export default function Signup() {
   const Register = async function (event) {
     event.preventDefault();
     try {
-      const response = await axios.post('https://server-navy-chi.vercel.app/SignUp', {
+      const response = await axios.post('https://server-navy-chi.vercel.app/signup', {
         Name: Name,
         Email: Email,
         Password: Password,

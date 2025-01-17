@@ -27,7 +27,7 @@ mongoose.connect(mongoURI)
 app.get('/',(req,res)=>{
   res.send("Hello");
 })
-app.post('/SignUp' ,checkPassword,checkEmail, SignUp); // kirti
+app.post('/signup' ,checkPassword,checkEmail, SignUp); // kirti
 app.post('/Login' , Login); // kirti
 app.post('/UpdateProfile' , verification , UpdateProfile); // kirti
 app.post('/ChangePassword' , verification , ChangePassword); // kirti
