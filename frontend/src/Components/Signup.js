@@ -28,7 +28,7 @@ export default function Signup() {
   const Register = async function (event) {
     event.preventDefault();
     try {
-      const response = await axios.post('https://server1-sandy.vercel.app/SignUp', {
+      const response = await axios.post('http://localhost:5000/SignUp', {
         Name: Name,
         Email: Email,
         Password: Password,
