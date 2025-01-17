@@ -22,6 +22,7 @@ app.use(
 app.use(express.json())
 // app.use('/Functions/Database/Uploads', express.static('Functions/Database/Uploads')); 
 
+app.options('*', cors());
 const mongoURI = process.env.MongoDbURL
 mongoose.connect(mongoURI)
   .then(() => {
