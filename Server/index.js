@@ -13,7 +13,7 @@ const upload = multer({ storage: storage })
 dotenv.config()
 app.use(
   cors({
-    origin: 'https://hostel-emporium-ete.vercel.app', // Allow only your frontend
+    origin: 'https://hostel-emporium-ete.vercel.app/', // Allow only your frontend
     methods: ['GET', 'POST'], // Allowed HTTP methods
     credentials: true, // Allow cookies if needed
   })
