@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv');
 const cors = require('cors')
 const multer = require('multer') 
-const app = express();
+const app = express();  
 const port = 5000;           
 const {verification,storage,checkPassword,checkEmail} = require('./Functions/middlewares.js')
 const {Login,SignUp,UpdateProfile,ChangePassword,AccountDelete,AddProduct,UpdateProduct,DeleteProduct,AllProducts,YourProducts,ProductBuying,Approving,GetQuery,GetSamples,YourBoughtProducts,reviewSystem,GetChat,addChat,FileUpload} = require('./Functions/Endpoints.js')
@@ -12,16 +12,6 @@ const {Login,SignUp,UpdateProfile,ChangePassword,AccountDelete,AddProduct,Update
 const upload = multer({ storage: storage })
    
 dotenv.config()
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://hostel-emporium-ete.vercel.app'); // Frontend domain
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true'); // If cookies are needed
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200); // Handle preflight request
-  }
-  next();
-});
 
 app.use(cors())
 

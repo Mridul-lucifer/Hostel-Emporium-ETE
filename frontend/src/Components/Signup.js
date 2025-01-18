@@ -28,17 +28,11 @@ export default function Signup() {
   const Register = async function (event) {
     event.preventDefault();
     try {
-      const response = await axios.post('https://server-navy-chi.vercel.app/signup', {
+      const response = await axios.post('http://localhost:5000/signup', {
         Name: Name,
         Email: Email,
         Password: Password,
         Contact: Contact
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        withCredentials: true, // Ensure it matches backend credentials setting
       }
     );
     
