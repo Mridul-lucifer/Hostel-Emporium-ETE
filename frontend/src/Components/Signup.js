@@ -37,11 +37,17 @@ export default function Signup() {
     );
     
       
+    if (response.status === 200) {
+      alert("-> " + response.data.msg);
+
       if (response.data.token) {
-        localStorage.setItem('authToken', response.data.token);
+          localStorage.setItem('authToken', response.data.token);
       }
-      alert(response.data.msg);
+
       navigate('/Home');
+  } else {
+      alert("Something went wrong: " + response.data.msg);
+  }
     } catch (err) {
       console.log("error on onsibmit on signup "+err );
     }
