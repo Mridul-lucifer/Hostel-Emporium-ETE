@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors')
 const multer = require('multer') 
 const app = express();  
-const port = 5000;           
+const port = 5000;             
 const {verification,storage,checkPassword,checkEmail} = require('./Functions/middlewares.js')
 const {Login,SignUp,UpdateProfile,ChangePassword,AccountDelete,AddProduct,UpdateProduct,DeleteProduct,AllProducts,YourProducts,ProductBuying,Approving,GetQuery,GetSamples,YourBoughtProducts,reviewSystem,GetChat,addChat,FileUpload} = require('./Functions/Endpoints.js')
 
@@ -18,7 +18,7 @@ app.use(cors())
 app.use(express.json())
 // app.use('/Functions/Database/Uploads', express.static('Functions/Database/Uploads')); 
 
-const mongoURI = process.env.MongoDbURL
+const mongoURI = "mongodb+srv://mmmmmm0654111111111:MridulGupta@cluster0.oi57p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 mongoose.connect(mongoURI)
   .then(() => {
     console.log('Connected to MongoDB'); 
