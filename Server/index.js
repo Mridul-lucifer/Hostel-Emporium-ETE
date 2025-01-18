@@ -1,7 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose')
 const dotenv = require('dotenv');
-const cors = require('cors')
+dotenv.config()
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 const multer = require('multer') 
 const app = express();  
 const port = 5000;             
@@ -11,21 +12,16 @@ const {Login,SignUp,UpdateProfile,ChangePassword,AccountDelete,AddProduct,Update
 
 const upload = multer({ storage: storage })
    
-dotenv.config()
+app.use(express.json());
+app.use(cors());
 
-app.use(cors())
-
-app.use(express.json())
 // app.use('/Functions/Database/Uploads', express.static('Functions/Database/Uploads')); 
 
 const mongoURI = "mongodb+srv://mmmmmm0654111111111:MridulGupta@cluster0.oi57p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-mongoose.connect(mongoURI)
-  .then(() => {
-    console.log('Connected to MongoDB'); 
-  })
-  .catch((err) => { 
-    console.log('Error connecting to MongoDB', err);
-  });
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
   
 app.get('/',(req,res)=>{
   res.send("Hello");
