@@ -6,7 +6,7 @@ A dynamic web platform built to simplify buying and selling among hostel residen
 # 📌 Project Overview
 Hostelers’ Emporium is a full-stack web application designed to cater to the everyday needs of hostel students. Whether you need a used chair, want to share your notes, or grab a quick snack, this platform connects students efficiently.
 
-----
+---
 
 # ✨ Features
   - 🛒 Post and browse hostel-related products
