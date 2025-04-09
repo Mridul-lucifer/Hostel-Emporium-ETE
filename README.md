@@ -23,7 +23,7 @@ Hostelers’ Emporium is a full-stack web application designed to cater to the e
   | Frontend    | React.js     |
   | Backend     | Express.js   |
   | Runtime     | Node.js(LTS) |
-  | DataStorage | File System  |
+  | DataStorage | MongoDB      |
   | Tools       | Git,npm      |
   | Deployment  | Vercel       |
 
