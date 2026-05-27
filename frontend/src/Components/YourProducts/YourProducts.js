@@ -1,6 +1,7 @@
 import './YourProducts.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BACKEND_URL from '../backendUrl';
 import ProductDisplay from './product_display'; // Ensure this is the correct import
 
 export default function YourProducts() {
@@ -11,7 +12,7 @@ export default function YourProducts() {
     const fetchProducts = async () => {
       
       try {
-        const response = await axios.post("http://localhost:5000/YourProducts",{
+        const response = await axios.post(`${BACKEND_URL}/YourProducts`,{
           Authorization: token
         });
         setProducts(response.data);

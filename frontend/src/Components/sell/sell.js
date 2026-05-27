@@ -3,6 +3,7 @@ import axios from 'axios'
 import './sell.css'
 // import  {readDatabase , addData} from '../Backend/functions.js'
 import ImageUpload from '../ImageUpload'
+import BACKEND_URL from '../backendUrl'
 export default function Sell() {
   let [ProductName , setProductName] = useState()
   let [Price , setPrice] = useState()
@@ -13,7 +14,7 @@ export default function Sell() {
     const token = localStorage.getItem('authToken');
     const ImagePath = localStorage.getItem('imagePath')
     try {
-        const response = await axios.post('http://localhost:5000/addProduct', {
+        const response = await axios.post(`${BACKEND_URL}/addProduct`, {
           Authorization: token,
           ProductName : ProductName,
           Price: Price,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './product_display.css'; // Import the CSS file
 import axios from 'axios'
+import BACKEND_URL from '../backendUrl'
 import { useNavigate } from 'react-router-dom';
 function ProductDisplay({ products }) {
   const [isUpdate, setUpdate] = useState({
@@ -16,7 +17,7 @@ function ProductDisplay({ products }) {
   const UpdateProductFunction = async function(){
     const token = localStorage.getItem('authToken');
     try{
-      const response = await axios.post('http://localhost:5000/UpdateProduct',{
+      const response = await axios.post(`${BACKEND_URL}/UpdateProduct`,{
         Authorization: token,
         ProductName : isUpdate.name,
         Quantity: isUpdate.quantity,
@@ -32,7 +33,7 @@ function ProductDisplay({ products }) {
   const DeleteProductFunction= async function(name){
     const token = localStorage.getItem('authToken');
     try{
-      const response = await axios.post('http://localhost:5000/DeleteProduct',{
+      const response = await axios.post(`${BACKEND_URL}/DeleteProduct`,{
         Authorization: token,
         ProductName : name
       })
@@ -44,7 +45,7 @@ function ProductDisplay({ products }) {
   }
   const Approving = async function (id,time,ChatId) {
     const token = localStorage.getItem('authToken');
-    const response = await axios.post(`http://localhost:5000/Approving/${id}/${time}/${ChatId}`,{
+    const response = await axios.post(`${BACKEND_URL}/Approving/${id}/${time}/${ChatId}`,{
       Authorization: token
     })
     alert(response.data.msg) 

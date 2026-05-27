@@ -4,6 +4,7 @@ import Logo from './Pics/Logo.jpg'
 import { Link ,useNavigate } from 'react-router-dom';
 import CompanyName from './ComanyName';
 import axios from 'axios'
+import BACKEND_URL from './backendUrl'
 export default function Signup() {
   let [Name, setName] = useState();
   let [Email, setEmail] = useState();
@@ -28,7 +29,7 @@ export default function Signup() {
   const Register = async function (event) {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/signup', {
+      const response = await axios.post(`${BACKEND_URL}/signup`, {
         Name: Name,
         Email: Email,
         Password: Password,

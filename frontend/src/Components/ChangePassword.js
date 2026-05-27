@@ -3,6 +3,7 @@ import Logo from './Pics/Logo.jpg'
 import './Style/ChangePassword.css'
 import React, { useState } from 'react';
 import axios from 'axios';
+import BACKEND_URL from './backendUrl';
 
 export default function ChangePassword() {
     let [oldPassword,setoldPassword] = useState()
@@ -12,7 +13,7 @@ export default function ChangePassword() {
         const token = localStorage.getItem('authToken');
         try {
             // Send a POST request to the server
-            const response = await axios.post('http://localhost:5000/ChangePassword', {
+            const response = await axios.post(`${BACKEND_URL}/ChangePassword`, {
               Authorization:token,
               oldPassword: oldPassword,
               newPassword: newPassword

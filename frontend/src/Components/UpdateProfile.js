@@ -3,6 +3,7 @@ import Logo from './Pics/Logo.jpg'
 import './Style/UpdateProfile.css'
 import React, { useState } from 'react';
 import axios from 'axios';
+import BACKEND_URL from './backendUrl';
 import { Link } from 'react-router-dom';
 
 export default function UpdateProfile() {
@@ -13,7 +14,7 @@ export default function UpdateProfile() {
         event.preventDefault();
         const token = localStorage.getItem('authToken');
         try {
-            const response = await axios.post('http://localhost:5000/UpdateProfile', {
+            const response = await axios.post(`${BACKEND_URL}/UpdateProfile`, {
               Authorization:token,
               Name: Name,
               Email:Email,

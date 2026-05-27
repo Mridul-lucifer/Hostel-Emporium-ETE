@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import './Style/Query.css'
+import BACKEND_URL from './backendUrl'
 export default function Query() {
     const [example,setExample] = useState([])
     const [question,setQuestion] = useState();
@@ -11,7 +12,7 @@ export default function Query() {
         setExample([])
         setQuestion(que);
         try{
-        const response = await axios.post(`http://localhost:5000/example/${que}`,{})
+        const response = await axios.post(`${BACKEND_URL}/example/${que}`,{})
         if(response.data.examples){
             setExample(response.data.examples);
         }}
@@ -22,7 +23,7 @@ export default function Query() {
 
     const GetSingleAnswer = async function(event){
         event.preventDefault();
-        const response = await axios.post('http://localhost:5000/query',{
+        const response = await axios.post(`${BACKEND_URL}/query`,{
             Question:question
         })
         if(response.data.answer){

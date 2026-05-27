@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Style/ChatingRoom.css'
+import BACKEND_URL from './backendUrl';
 export default function ChatingRoom() {
   const [samp, setsamp] = useState(null);
   const [array, setArray] = useState([]);
@@ -14,7 +15,7 @@ export default function ChatingRoom() {
       if (roomNumber) {
         try {
           const token = localStorage.getItem('authToken');
-          const response = await axios.post('http://localhost:5000/getChat', {
+          const response = await axios.post(`${BACKEND_URL}/getChat`, {
             Authorization: token,
             ChatId: roomNumber,
           });
@@ -36,7 +37,7 @@ export default function ChatingRoom() {
     event.preventDefault();
     const token = localStorage.getItem('authToken');
     try {
-      const response = await axios.post('http://localhost:5000/sendChat', {
+      const response = await axios.post(`${BACKEND_URL}/sendChat`, {
         Authorization: token,
         ChatId: localStorage.getItem('ChatId'),
         msg: chat,

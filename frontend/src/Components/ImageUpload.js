@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import BACKEND_URL from './backendUrl';
 import camera from "./Pics/AddCamera.png";
 
 export default function ImageUpload() {
@@ -20,14 +21,14 @@ export default function ImageUpload() {
         formData.append('image', image);
         
         try {
-            const response = await axios.post('http://localhost:5000/addImage', formData, {
+            const response = await axios.post(`${BACKEND_URL}/addImage`, formData, {
             
                     'Content-Type': 'multipart/form-data'
                 
             });
 
             if (response.data.path) {
-                setPath( "http://localhost:5000"+ response.data.path)
+                setPath(`${BACKEND_URL}${response.data.path}`)
                 localStorage.setItem('imagePath', response.data.path);
                 // alert('Image uploaded successfully');
             } else {

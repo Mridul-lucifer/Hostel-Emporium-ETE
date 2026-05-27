@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './product_display.css'; // Import the CSS file
 import axios from 'axios'
+import BACKEND_URL from '../backendUrl'
 
 function ProductDisplay({ product, ProductSold }) {
   const [quantity,setQuantity] = useState(0);
@@ -16,7 +17,7 @@ function ProductDisplay({ product, ProductSold }) {
   } 
   
   
-  let a = "http://localhost:5000"
+  const a = BACKEND_URL
   return (
         <div key={product.id} className="product-item">
           <div className="product_display-img-div">

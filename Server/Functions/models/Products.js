@@ -37,7 +37,7 @@ const productSchema = new mongoose.Schema({
             time: String,
             ChatId: mongoose.Schema.Types.ObjectId
         }],
-        DateTime: Date
+        DateTime: String
     }]
 });
 

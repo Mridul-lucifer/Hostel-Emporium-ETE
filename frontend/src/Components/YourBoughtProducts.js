@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Style/YourBoughtProducts.css'
 import axios from 'axios'
+import BACKEND_URL from './backendUrl'
 import { useNavigate } from 'react-router-dom';
 export default function YourBoughtProducts() {
     let [InProgressBuying,setInProgressBuying]=useState([]);
@@ -12,7 +13,7 @@ export default function YourBoughtProducts() {
     const fetchProducts = async () => {
       const token = localStorage.getItem('authToken');
       try {
-        const response = await axios.post("http://localhost:5000/YourBoughtProducts",{
+        const response = await axios.post(`${BACKEND_URL}/YourBoughtProducts`,{
           Authorization: token
         });
         setInProgressBuying(response.data.InProgressBuying);
@@ -27,7 +28,7 @@ export default function YourBoughtProducts() {
     const reviewSystem = async function(bought){
       let rating = prompt(`Enter Rating for ${bought.ProductName}: `)
       let review = prompt(`Enter Review for ${bought.ProductName}: `)
-      const response = await axios.post("http://localhost:5000/review",{
+      const response = await axios.post(`${BACKEND_URL}/review`,{
         Authorization: token,
         Id : bought.Seller,
         ProductName : bought.ProductName,

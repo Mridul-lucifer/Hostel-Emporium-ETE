@@ -4,6 +4,7 @@ import Logo from "./Pics/Logo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import CompanyName from "./ComanyName";
 import axios from "axios";
+import BACKEND_URL from './backendUrl';
 export default function LoginPage() {
   let [Email, setEmail] = useState();
   let [Password, setPassword] = useState();
@@ -11,7 +12,7 @@ export default function LoginPage() {
   const CheckLogin = async function (event) {
     event.preventDefault();
     try {
-      const response = await axios.post("https://server-navy-chi.vercel.app/Login", {
+      const response = await axios.post(`${BACKEND_URL}/Login`, {
         Email: Email,
         Password: Password,
       });

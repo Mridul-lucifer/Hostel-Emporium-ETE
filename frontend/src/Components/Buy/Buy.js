@@ -1,6 +1,7 @@
 import './buy.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BACKEND_URL from '../backendUrl';
 import ProductDisplay from './product_display'; // Ensure this is the correct import
 
 export default function Buy() {
@@ -11,7 +12,7 @@ export default function Buy() {
     // Fetch products data when the component mounts
     const fetchProducts = async () => {
       try {
-        const response = await axios.post("http://localhost:5000/AllProducts",{
+        const response = await axios.post(`${BACKEND_URL}/AllProducts`,{
           Authorization: token
         });
         // console.log('API response:', response.data); // Log the data to ensure it's correct
@@ -31,7 +32,7 @@ export default function Buy() {
       alert("Quatity can't be 0")
     }else{
     try {
-      const response = await axios.post('http://localhost:5000/ProductBuying',{
+      const response = await axios.post(`${BACKEND_URL}/ProductBuying`,{
         Authorization: token,
         uniqueId : id,
         quantity:quantity
